@@ -219,7 +219,7 @@
       if (risk) {
         risk.addEventListener('click', async function () {
           var og = risk.textContent; risk.disabled = true; risk.textContent = '🎲 бросаю кости…';
-          try { await genMove(RISK_PROMPT); risk.textContent = '✅ сюрприз!'; refresh(); }
+          try { await genMove(RISK_PROMPT); risk.textContent = '✅ сюрприз!'; pokeAll(); }
           catch (e) { risk.disabled = false; risk.textContent = og; toast('Ошибка: ' + ((e && e.message) || e)); }
         });
       }
@@ -240,7 +240,7 @@
       out.querySelectorAll('.ti-go').forEach(function (g) {
         g.addEventListener('click', async function () {
           var steer = g.getAttribute('data-steer'); var og = g.textContent; g.disabled = true; g.textContent = '✍️ бот пишет…';
-          try { await genMove(STEER_TPL.replace('{DIR}', steer)); g.textContent = '✅ готово'; refresh(); }
+          try { await genMove(STEER_TPL.replace('{DIR}', steer)); g.textContent = '✅ готово'; pokeAll(); }
           catch (e) { g.disabled = false; g.textContent = og; toast('Ошибка: ' + ((e && e.message) || e)); }
         });
       });
@@ -303,6 +303,15 @@
 
   var refreshTimer = null;
   function scheduleRefresh() { clearTimeout(refreshTimer); refreshTimer = setTimeout(refresh, 60); }
+  // общий сигнал для ВСЕХ tavo-панелей (идеи + для меня): после ручного дописывания в чат
+  function pokeAll() { window.dispatchEvent(new CustomEvent('tavo-panels-refresh')); }
+
+  // следим за контейнером чата: любое добавление/удаление сообщения двигает панель под последнее
+  function watchChat() {
+    var el = document.getElementById('chat');
+    if (!el) { setTimeout(watchChat, 500); return; }
+    new MutationObserver(scheduleRefresh).observe(el, { childList: true });
+  }
 
   // ---- запуск ----
   function boot() {
@@ -314,6 +323,8 @@
       et.CHARACTER_MESSAGE_RENDERED, et.USER_MESSAGE_RENDERED, et.CHAT_CHANGED,
       et.MESSAGE_DELETED, et.MESSAGE_SWIPED, et.MESSAGE_EDITED, et.MORE_MESSAGES_LOADED
     ].forEach(function (ev) { if (ev) es.on(ev, scheduleRefresh); });
+    window.addEventListener('tavo-panels-refresh', scheduleRefresh);
+    watchChat();
     scheduleRefresh();
     console.log('[tavo-ideas] загружено');
   }
@@ -553,7 +564,7 @@
             g.textContent = '💬 бот отвечает…';
             await genBotReaction();
             g.textContent = '✅ готово';
-            refresh();
+            pokeAll();
           } catch (e) { g.disabled = false; g.textContent = og; toast('Ошибка: ' + ((e && e.message) || e)); }
         });
       });
@@ -616,6 +627,15 @@
 
   var refreshTimer = null;
   function scheduleRefresh() { clearTimeout(refreshTimer); refreshTimer = setTimeout(refresh, 90); }
+  // общий сигнал для ВСЕХ tavo-панелей (идеи + для меня): после ручного дописывания в чат
+  function pokeAll() { window.dispatchEvent(new CustomEvent('tavo-panels-refresh')); }
+
+  // следим за контейнером чата: любое добавление/удаление сообщения двигает панель под последнее
+  function watchChat() {
+    var el = document.getElementById('chat');
+    if (!el) { setTimeout(watchChat, 500); return; }
+    new MutationObserver(scheduleRefresh).observe(el, { childList: true });
+  }
 
   // ---- запуск ----
   function boot() {
@@ -627,6 +647,8 @@
       et.CHARACTER_MESSAGE_RENDERED, et.USER_MESSAGE_RENDERED, et.CHAT_CHANGED,
       et.MESSAGE_DELETED, et.MESSAGE_SWIPED, et.MESSAGE_EDITED, et.MORE_MESSAGES_LOADED
     ].forEach(function (ev) { if (ev) es.on(ev, scheduleRefresh); });
+    window.addEventListener('tavo-panels-refresh', scheduleRefresh);
+    watchChat();
     scheduleRefresh();
     console.log('[tavo-me] загружено');
   }
