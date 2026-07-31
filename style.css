@@ -68,6 +68,9 @@
 .ti-peek:disabled{opacity:.5;cursor:default}
 .ti-teaser{display:none;margin-top:8px;font-size:12px;font-style:italic;line-height:1.4;color:color-mix(in srgb,var(--acc,currentColor) 85%,#fff);opacity:.9;animation:ti-in .3s ease both}
 
+/* панель — сиблинг .mes в ленте #chat: боковые отступы как у сообщений */
+.tavo-ideas-panel{padding:0 15px 6px;box-sizing:border-box;width:100%}
+
 /* Tavo · Варианты для меня — панель под плашкой идей (ходы игрока) */
 @keyframes ti2-sheen{0%{left:-70%}55%{left:130%}100%{left:130%}}
 @keyframes ti2-flap{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.15)}}
@@ -137,3 +140,6 @@
 .ti2-peek:hover{opacity:.9}
 .ti2-peek:disabled{opacity:.5;cursor:default}
 .ti2-teaser{display:none;margin-top:8px;font-size:12px;font-style:italic;line-height:1.4;color:color-mix(in srgb,var(--acc,currentColor) 85%,#fff);opacity:.9;animation:ti2-in .3s ease both}
+
+/* панель — сиблинг .mes в ленте #chat: боковые отступы как у сообщений */
+.tavo-me-panel{padding:0 15px 6px;box-sizing:border-box;width:100%}
