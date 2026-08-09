@@ -125,19 +125,28 @@
     var user = 'Recent scene:\n\n' + buildTranscript() + '\n\nGive the one-line teaser now, only the short phrase.';
     return await ctx().generateRaw({ prompt: user, systemPrompt: sys });
   }
-  // Полный ход бота: генерим «громко» с инструкцией, затем дописываем как сообщение персонажа.
-  async function genMove(quietPrompt) {
+  // Полный ход бота. Кладём направление как СКРЫТУЮ реплику режиссёра от лица юзера (в массив chat,
+  // но НЕ в UI) — чтобы для модели последний ход был «от юзера» и она ответила СВЕЖИМ постом, а не
+  // переписала свой предыдущий (2-й подряд пост бота = «свайп»). После генерации скрытую реплику убираем.
+  async function genMove(instructionText) {
     var c = ctx();
-    var text = await c.generateQuietPrompt({ quietPrompt: quietPrompt, quietToLoud: true });
+    var director = {
+      name: c.name1 || 'User', is_user: true, is_system: false,
+      send_date: Date.now(), mes: instructionText, extra: {}
+    };
+    c.chat.push(director);
+    var text;
+    try {
+      text = await c.generateQuietPrompt({ quietPrompt: '(Write your next in-character message now.)', quietToLoud: true });
+    } finally {
+      var di = c.chat.lastIndexOf(director);
+      if (di > -1) c.chat.splice(di, 1);
+    }
     text = (text || '').trim();
     if (!text) throw new Error('пустой ответ модели');
     var mes = {
-      name: c.name2 || 'Character',
-      is_user: false,
-      is_system: false,
-      send_date: Date.now(),
-      mes: text,
-      extra: {}
+      name: c.name2 || 'Character', is_user: false, is_system: false,
+      send_date: Date.now(), mes: text, extra: {}
     };
     c.chat.push(mes);
     c.addOneMessage(mes);
