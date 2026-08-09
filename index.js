@@ -31,14 +31,17 @@
     + 'No spoilers, no story, no character post, no reasoning, no quotes. CRITICAL: reply STRICTLY in the SAME '
     + 'language as the transcript (if it is in Russian, reply in Russian).';
 
-  var STEER_TPL = '[Continue the roleplay in-character as the character(s) and the world. Take the scene in THIS '
-    + 'direction now: {DIR}. Advance the plot, show the new development vividly, and end on a hook that demands the '
-    + 'user react. Never speak or act for the user. Match the established style, POV and formatting.]';
+  var STEER_TPL = '[DIRECTOR NOTE — HIGHEST priority for THIS turn, overriding any pacing, inertia or "change is slow" rules. '
+    + 'Your previous message is already posted and finished. Now write the NEXT message that moves the scene FORWARD in time and '
+    + 'action with genuinely NEW content — do NOT repeat, rephrase, summarize or lightly rewrite the previous message. '
+    + 'Take the scene in THIS direction now: {DIR}. Show the new development vividly and end on a hook that demands the user react. '
+    + 'Never speak or act for the user. Keep the established voice, POV and required format.]';
 
-  var RISK_PROMPT = '[Continue the roleplay in-character as the character(s) and the world. Introduce a genuinely '
-    + 'SURPRISING, unexpected development that the reader would NOT predict — a twist, an intrusion, or a reversal — '
-    + 'while staying true to the established characters, tone, and world. Be bold but coherent, advance the plot, and '
-    + 'end on a hook that demands the user react. Never speak or act for the user. Match the established style, POV and formatting.]';
+  var RISK_PROMPT = '[DIRECTOR NOTE — HIGHEST priority for THIS turn, overriding any pacing or "change is slow" rules. '
+    + 'Your previous message is already posted and finished. Now write the NEXT message that moves the scene FORWARD with a genuinely '
+    + 'SURPRISING, unexpected development the reader would NOT predict — a twist, an intrusion, or a reversal — do NOT repeat or '
+    + 'rephrase the previous message. Stay true to the established characters, tone and world, advance vividly, and end on a hook. '
+    + 'Never speak or act for the user. Keep the established voice, POV and required format.]';
 
   var TYPES = {
     'драма': { e: '🔥', c: '#ff5c7a' }, 'драм': { e: '🔥', c: '#ff5c7a' },
@@ -415,9 +418,10 @@
       + 'Write in the SAME language as the transcript. Output ONLY the post text - no preamble, no quotes around it.';
   }
 
-  var REACT_TPL = '[Continue the roleplay in-character as the character(s) and the world, reacting to what {PLAYER} '
-    + 'just did. Stay measured, do not over-dramatize. Never speak or act for {PLAYER}. Match the established style, '
-    + 'POV and formatting.]';
+  var REACT_TPL = '[DIRECTOR NOTE — HIGHEST priority for THIS turn. Continue the roleplay in-character, reacting to what {PLAYER} '
+    + 'JUST did in their latest message. Move the scene FORWARD with genuinely new content — do NOT repeat, rephrase or lightly '
+    + 'rewrite any earlier message. Stay measured, do not over-dramatize. Never speak or act for {PLAYER}. Keep the established '
+    + 'voice, POV and required format.]';
 
   var TYPES = {
     'драма': { e: '🔥', c: '#ff5c7a' }, 'драм': { e: '🔥', c: '#ff5c7a' },
