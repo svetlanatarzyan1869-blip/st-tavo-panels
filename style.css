@@ -24,10 +24,10 @@
 .ti-body{margin-top:10px}
 .ti-panel.collapsed .ti-body{display:none}
 
-.ti-btn{position:relative;overflow:hidden;display:inline-block;padding:8px 15px;border-radius:12px;border:1px solid color-mix(in srgb,currentColor 24%,transparent);background:color-mix(in srgb,currentColor 9%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:inherit;font:inherit;font-size:12px;font-weight:600;letter-spacing:.02em;cursor:pointer}
+.ti-btn{position:relative;overflow:hidden;display:inline-block;padding:8px 15px;border-radius:12px;border:1px solid color-mix(in srgb,#ff77c8 55%,transparent);background:color-mix(in srgb,#ff77c8 26%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:inherit;font:inherit;font-size:13px;font-weight:700;letter-spacing:.02em;cursor:pointer}
 .ti-btn-txt{position:relative;z-index:1}
-.ti-btn::after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(115deg,transparent,color-mix(in srgb,currentColor 45%,transparent),transparent);transform:skewX(-20deg);animation:ti-sheen 3.6s ease-in-out infinite;pointer-events:none}
-.ti-btn:hover{background:color-mix(in srgb,currentColor 16%,transparent)}
+.ti-btn::after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(115deg,transparent,color-mix(in srgb,#ff77c8 55%,transparent),transparent);transform:skewX(-20deg);animation:ti-sheen 3.6s ease-in-out infinite;pointer-events:none}
+.ti-btn:hover{background:color-mix(in srgb,#ff77c8 40%,transparent)}
 .ti-btn:disabled{cursor:default;opacity:.6}
 
 .ti-cap{font-size:12px;opacity:.8;margin-bottom:8px;animation:ti-cap 1.3s ease-in-out infinite}
@@ -97,10 +97,10 @@
 .ti2-body{margin-top:10px}
 .ti2-panel.collapsed .ti2-body{display:none}
 
-.ti2-btn{position:relative;overflow:hidden;display:inline-block;padding:8px 15px;border-radius:12px;border:1px solid color-mix(in srgb,currentColor 24%,transparent);background:color-mix(in srgb,currentColor 9%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:inherit;font:inherit;font-size:12px;font-weight:600;letter-spacing:.02em;cursor:pointer}
+.ti2-btn{position:relative;overflow:hidden;display:inline-block;padding:8px 15px;border-radius:12px;border:1px solid color-mix(in srgb,#ff77c8 55%,transparent);background:color-mix(in srgb,#ff77c8 26%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:inherit;font:inherit;font-size:13px;font-weight:700;letter-spacing:.02em;cursor:pointer}
 .ti2-btn-txt{position:relative;z-index:1}
-.ti2-btn::after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(115deg,transparent,color-mix(in srgb,currentColor 45%,transparent),transparent);transform:skewX(-20deg);animation:ti2-sheen 3.6s ease-in-out infinite;pointer-events:none}
-.ti2-btn:hover{background:color-mix(in srgb,currentColor 16%,transparent)}
+.ti2-btn::after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(115deg,transparent,color-mix(in srgb,#ff77c8 55%,transparent),transparent);transform:skewX(-20deg);animation:ti2-sheen 3.6s ease-in-out infinite;pointer-events:none}
+.ti2-btn:hover{background:color-mix(in srgb,#ff77c8 40%,transparent)}
 .ti2-btn:disabled{cursor:default;opacity:.6}
 
 .ti2-cap{font-size:12px;opacity:.8;margin-bottom:8px;animation:ti2-cap 1.3s ease-in-out infinite}
@@ -143,3 +143,15 @@
 
 /* панель — сиблинг .mes в ленте #chat: боковые отступы как у сообщений */
 .tavo-me-panel{padding:0 15px 6px;box-sizing:border-box;width:100%}
+
+/* ── ошибка + неприметный отчёт для Светлячка (обе панели) ── */
+.ti-err,.ti2-err{--acc:#ff5c7a;text-align:left}
+.ti-err p,.ti2-err p{font-size:13px;line-height:1.5;margin:0 0 4px}
+.ti-report,.ti2-report{margin-top:8px;margin-left:10px;background:none;border:none;color:inherit;opacity:.45;font:inherit;font-size:11px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0;transition:opacity .15s}
+.ti-report:hover,.ti2-report:hover{opacity:.85}
+.ti-report-box,.ti2-report-box{display:none;margin-top:10px}
+.ti-report-box.open,.ti2-report-box.open{display:block;animation:ti-in .2s ease both}
+.ti-report-txt,.ti2-report-txt{width:100%;box-sizing:border-box;resize:vertical;min-height:120px;padding:8px 10px;border-radius:10px;border:1px solid color-mix(in srgb,currentColor 22%,transparent);background:color-mix(in srgb,currentColor 6%,transparent);color:inherit;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;line-height:1.4;white-space:pre;-webkit-user-select:text;user-select:text}
+.ti-report-row,.ti2-report-row{display:flex;gap:8px;margin-top:8px}
+.ti-report-copy,.ti-report-hide,.ti2-report-copy,.ti2-report-hide{padding:6px 12px;border-radius:10px;border:1px solid color-mix(in srgb,currentColor 22%,transparent);background:color-mix(in srgb,currentColor 8%,transparent);color:inherit;font:inherit;font-size:11px;font-weight:600;cursor:pointer;transition:background .15s}
+.ti-report-copy:hover,.ti-report-hide:hover,.ti2-report-copy:hover,.ti2-report-hide:hover{background:color-mix(in srgb,currentColor 16%,transparent)}
